@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client'
  
 import {RouterProvider } from 'react-router-dom'
 import router from './routes/Router.jsx'
+import "nprogress/nprogress.css";
+
  
 
 
