@@ -1,6 +1,8 @@
 import React from 'react'
+import { useLoaderData } from 'react-router-dom'
 
 function Contact() {
+  const contactData = useLoaderData();
   return (
     <>
             
@@ -25,8 +27,8 @@ function Contact() {
                 </div>
                 <div className="content">
                   <h4>My Location</h4>
-                  <p>At. Post. Tarsa Tah. Maouda Dist. Nagpur</p>
-                  <p>Maharashtra, India 441106</p>
+                  <p>{contactData.address}</p>
+                  <p>{contactData.city}, {contactData.state}, {contactData.country}</p>
                 </div>
               </div>
 
@@ -36,7 +38,7 @@ function Contact() {
                 </div>
                 <div className="content">
                   <h4>Phone Number</h4>
-                  <p>+91 8379988428</p>  
+                  <p>+91 {contactData.mobileNo}</p>  
                 </div>
               </div>
 
@@ -46,7 +48,7 @@ function Contact() {
                 </div>
                 <div className="content">
                   <h4>Email Address</h4>
-                  <p>rajkamalhatwar@gmail.com</p> 
+                  <p>{contactData.email}</p> 
                 </div>
               </div>
             </div>

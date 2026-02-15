@@ -1,10 +1,17 @@
 import React from 'react'
 import { useEffect,useRef,useState } from 'react'
 import Skill from './componants/Skill'
+import EducationItem from './componants/EducationItem'
+import ExperianceItem from './componants/ExperianceItem'
+import { useLoaderData } from "react-router-dom";
 
 function Resume() {
   const skillsRef = useRef(null)
   const [skillVisible, setSkillVisible] = useState(false)
+  const { skills, experiences, educations } = useLoaderData();
+  console.log(skills);
+  console.log(experiences);
+  console.log(educations);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -23,17 +30,17 @@ function Resume() {
     return () => observer.disconnect()
   }, [])
 
-  const skills = [
-    { title: 'Backend Development (C#, ASP.NET MVC, ASP.NET Core)', value: 90 },
-    { title: 'Frontend Development (HTML, CSS, JavaScript, Bootstrap)', value: 85 },
-    { title: 'React & jQuery (Basics)', value: 50 },
-    { title: 'Database Management (SQL Server)', value: 85 },
-    { title: 'API Development (REST APIs, AJAX)', value: 88 },
-    { title: 'Programming Concepts (OOP, Problem Solving)', value: 90 },
-    { title: 'Version Control & Cloud (Git, Azure Blob Storage)', value: 75 },
-    { title: 'Core Java', value: 70 },
-    { title: 'Collaboration & Teamwork', value: 85 }
-    ];
+  // const skills = [
+  //   { title: 'Backend Development (C#, ASP.NET MVC, ASP.NET Core)', value: 90 },
+  //   { title: 'Frontend Development (HTML, CSS, JavaScript, Bootstrap)', value: 85 },
+  //   { title: 'React & jQuery (Basics)', value: 50 },
+  //   { title: 'Database Management (SQL Server)', value: 85 },
+  //   { title: 'API Development (REST APIs, AJAX)', value: 88 },
+  //   { title: 'Programming Concepts (OOP, Problem Solving)', value: 90 },
+  //   { title: 'Version Control & Cloud (Git, Azure Blob Storage)', value: 75 },
+  //   { title: 'Core Java', value: 70 },
+  //   { title: 'Collaboration & Teamwork', value: 85 }
+  //   ];
 
   return (
     <>
@@ -54,8 +61,15 @@ function Resume() {
             {/* <!-- Education Section --> */}
             <div className="resume-item" data-aos="fade-up">
               <h3 className="resume-title">Education</h3>
-
               <div className="resume-content">
+                {educations
+                  .filter((edu) => edu.isActive)
+                  .sort((a, b) => a.sequenceNo - b.sequenceNo)
+                  .map((edu) => (
+                    <EducationItem key={edu.id} education={edu} />
+                  ))}
+              </div>
+              {/* <div className="resume-content">
                 <article className="education-item">
                   <h4>Bachelor of Engineering</h4>
                   <p>Computer Science and Engineering - CGPA : 7.8(Overall)</p> 
@@ -76,7 +90,7 @@ function Resume() {
                   <h5>2016 - 2017</h5>
                   <p className="institution"><em>Janata Jr College, Mouda, Nagpur, Maharashtra</em></p> 
                 </article>
-              </div>
+              </div> */}
             </div>
             {/* <!-- End Education Section -->  */}
 
@@ -85,11 +99,13 @@ function Resume() {
               <h3 className="resume-title">Professional Skills</h3>
 
               <div ref={skillsRef} className="resume-content"> 
-                {skills.map((skill, index) => (
+                {skills
+                .sort((a, b) => a.sequenceNo - b.sequenceNo)
+                .map((skill, index) => (
                     <Skill
                     key={index}
-                    title={skill.title}
-                    value={skill.value}
+                    title={skill.skillName}
+                    value={skill.outOf100}
                     visible={skillVisible}
                     />
                 ))} 
@@ -103,8 +119,16 @@ function Resume() {
             {/* <!-- Experience Section --> */}
               <div className="resume-item" data-aos="fade-up" data-aos-delay="100">
                 <h3 className="resume-title">Professional Experience</h3>
-
                 <div className="resume-content">
+                  {experiences
+                    .filter((exp) => exp.isActive)
+                    .sort((a, b) => a.sequenceNo - b.sequenceNo)
+                    .map((exp) => (
+                      <ExperianceItem key={exp.id} experience={exp} />
+                  ))}
+                </div>
+
+                {/* <div className="resume-content">
 
                   <article className="experience-item">
                     <h4>Junior Software Developer</h4>
@@ -131,7 +155,7 @@ function Resume() {
                     </ul>
                   </article>
 
-                </div>
+                </div> */}
               </div>
               {/* <!-- End Experience Section --> */}
 
