@@ -33,9 +33,9 @@
  
 
   /**
-   * Initiate Pure Counter
-   */
-  new PureCounter();
+  //  * Initiate Pure Counter
+  //  */
+  // new PureCounter();
 
   /**
    * Init swiper sliders
@@ -89,11 +89,11 @@
 
   });
 
-  /**
-   * Initiate glightbox
-   */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
+  // /**
+  //  * Initiate glightbox
+  //  */
+  // const glightbox = GLightbox({
+  //   selector: '.glightbox'
+  // });
 
 })();

@@ -7,13 +7,22 @@ import Resume from '../features/resume/Resume';
 import Projects from '../features/projects/Projects';
 import CreativeWorks from '../features/creativeWorks/CreativeWorks';
 import Contact from '../features/contact/Contact';
+import { homeLoader } from '../features/home/HomeLoader';
 
 const router = createBrowserRouter([
     { 
         element: <MainLayout />,
         children: [
-          { path: "/", element: <Home /> },
-          { path: "/About", element: <About /> },
+          { path: "/", 
+            element: <Home />,
+            loader : homeLoader,
+            errorElement: <div>Something went wrong</div>
+          },
+          { path: "/About", 
+            element: <About />,
+            loader : homeLoader,
+            errorElement: <div>Something went wrong</div>
+          },
           { path: "/Resume", element: <Resume /> },
           { path: "/Projects", element: <Projects /> },
           { path: "/CreativeWorks", element: <CreativeWorks /> },

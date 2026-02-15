@@ -59,13 +59,8 @@ function CreativeWorks() {
 
   const filters = ['All', 'Sketches', 'Photography', 'Logo', 'PosterDesign']
 
-//   const filteredItems =
-//     activeFilter === 'All'
-//       ? portfolioData
-//       : portfolioData.filter(item => item.category === activeFilter)
-
-
-   const breakpointColumnsObj = {
+ 
+  const breakpointColumnsObj = {
     default: 3,
     1200: 3,
     992: 2,
@@ -111,58 +106,7 @@ function CreativeWorks() {
               {filter}
             </li>
           ))}
-        </ul>
-
-        {/* <Masonry
-        breakpointCols={breakpointColumnsObj}
-        className="masonry-grid"
-        data-aos="fade-up"
-        columnClassName="masonry-grid_column"
-        > 
-            {filteredItems.map(item => (
-                <motion.div
-                    key={item.id + activeFilter}   // 🔥 forces remount on filter change
-                    className="portfolio-item"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    //transition={{ duration: 0.6, ease: "easeOut" }}
-                    transition={{ duration: 0.6, delay: 0.05 }}
-                >
-
-                <div className="portfolio-card">
-
-                     IMAGE ITEM  
-                    {item.img && (
-                    <>
-                        <div className="portfolio-img">
-                        <img
-                            src={item.img}
-                            className="img-fluid"
-                            alt={item.title}
-                            onClick={() => setLightboxImg(item.img)}
-                            style={{ cursor: 'zoom-in' }}
-                        />
-                        </div>
-
-                        <div className="portfolio-info">
-                        <h4>{item.title}</h4>
-                        <p>{item.description}</p>
-
-                        {item.tags && (
-                            <div className="portfolio-tags">
-                            {item.tags.map((tag, i) => (
-                                <span key={i}>{tag}</span>
-                            ))}
-                            </div>
-                        )}
-                        </div>
-                    </>
-                    )}  
-
-                </div>
-                </motion.div>
-            ))} 
-        </Masonry> */}
+        </ul> 
 
         <Masonry
             breakpointCols={breakpointColumnsObj}

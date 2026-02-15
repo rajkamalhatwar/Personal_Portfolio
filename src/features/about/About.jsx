@@ -1,7 +1,9 @@
 import React from 'react'
 import MyPhoto from '../../assets/img/profile/MyPhoto.jpeg';
+import { useLoaderData } from 'react-router-dom';
 
 function About() {
+  const aboutData = useLoaderData();
   return (
     <>
           {/* <!-- About Section --> */}
@@ -20,14 +22,12 @@ function About() {
           <div className="col-lg-7" data-aos="fade-right" data-aos-delay="150">
             <div className="intro-content">
               <span className="eyebrow">Hello there</span>
-              <h2 className="headline">Hi, I'm Rajkamal - a calm-minded creative developer crafting serene digital journeys</h2>
+              <h2 className="headline">Hi, I'm {aboutData.userName} - {aboutData.shortAbout}</h2>
               <p className="lead">
-                Junior Software Developer with 1.7 years of experience in ASP.NET MVC/Core and SQL Server technologies. Passionate about 
-problem-solving, performance optimization, and building user-friendly applications. Experienced in REST APIs, JWT 
-authentication, and Agile methodologies. 
+                {aboutData.longAbout}
               </p> 
               <div className="cta-group">
-                <a href="Projects.html" className="btn-ghost">
+                <a href="#" className="btn-ghost">
                   View My Work <i className="bi bi-arrow-up-right"></i>
                 </a>
                 {/* <!-- <a href="#" className="link-underline">
@@ -39,7 +39,7 @@ authentication, and Agile methodologies.
 
           <div className="col-lg-5" data-aos="zoom-in" data-aos-delay="250">
             <figure className="profile-figure text-center text-lg-end">
-              <img src={MyPhoto} alt="Portrait of Rajkamal" className="img-fluid profile-photo"/>
+              <img src={aboutData.photoUrl} alt="Portrait of Rajkamal" className="img-fluid profile-photo"/>
             </figure>
           </div>
         </div>
