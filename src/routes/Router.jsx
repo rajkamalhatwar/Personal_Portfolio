@@ -10,6 +10,7 @@ import Contact from '../features/contact/Contact';
 import { homeLoader } from '../features/home/HomeLoader';
 import { resumeLoader } from '../features/resume/ResumeLoader';
 import { projectLoader } from '../features/projects/ProjectLoader';
+import { creativeWorksLoader } from '../features/creativeWorks/CreativeWorkLoader';
 
 const router = createBrowserRouter([
     { 
@@ -35,13 +36,16 @@ const router = createBrowserRouter([
             loader : projectLoader,
             errorElement: <div>Something went wrong</div>
           },
-          { path: "/CreativeWorks", element: <CreativeWorks /> },
+          { path: "/CreativeWorks", 
+            element: <CreativeWorks />,
+            loader : creativeWorksLoader,
+            errorElement: <div>Something went wrong</div>
+          },
           { path: "/Contact", 
             element: <Contact /> ,
             loader : homeLoader,
             errorElement: <div>Something went wrong</div>
-          }
- 
+          } 
         ]
     }
 ]);

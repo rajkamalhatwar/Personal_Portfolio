@@ -2,63 +2,67 @@ import React from 'react'
 import { useState } from 'react' 
 import Masonry from "react-masonry-css";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLoaderData } from "react-router-dom";
  
-const portfolioData = [
-  {
-    id: 1,
-    category: 'Sketches',
-    title: 'The Chhatrapati Shivaji Maharaj Sketch',
-    description: 'Chhatrapati Shivaji Maharaj known as Father of Indian Navy.',
-    img: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260120184304155_9837.jpg',
-    tags: ['shivba', 'chhatrapati']
-  },
-  {
-    id: 2,
-    category: 'Sketches',
-    title: 'The Rohit Sharma Sketch',
-    description: 'Sketch of Rohit Sharma, former Indian cricket team captain.',
-    img:'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260206025535773_4500.png',
-    tags: ['Cricket', 'ICT']
-  },
-  {
-    id: 3,
-    category: 'Photography',
-    title: 'Where Time Meets the Sky',
-    description: 'Ancient temple crown against drifting clouds.',
-    img: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260124204703411_7822.jpg',
-    tags: ['temple']
-  },
-  {
-    id: 4,
-    category: 'Photography',
-    title: 'Faith in Motion',
-    description: 'Devotees moving through a historic gateway.',
-    img: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260124204403067_7935.jpg',
-    tags: ['Faith', 'historic']
-  },
-  {
-    id: 5,
-    category: 'Photography',
-    title: 'Faith in Motion',
-    description: 'Devotees moving through a historic gateway.',
-    img: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260124204403067_7935.jpg',
-    tags: ['Faith', 'historic']
-  },
-  {
-    id: 6,
-    category: 'Photography',
-    title: 'Faith in Motion',
-    description: 'Devotees moving through a historic gateway.',
-    img: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260124204403067_7935.jpg',
-    tags: ['Faith', 'historic']
-  },
-]
+// const portfolioData = [
+//   {
+//     id: 1,
+//     categoryName: 'Sketches',
+//     title: 'The Chhatrapati Shivaji Maharaj Sketch',
+//     description: 'Chhatrapati Shivaji Maharaj known as Father of Indian Navy.',
+//     imageURL: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260120184304155_9837.jpg',
+//     tags: ['shivba', 'chhatrapati']
+//   },
+//   {
+//     id: 2,
+//     categoryName: 'Sketches',
+//     title: 'The Rohit Sharma Sketch',
+//     description: 'Sketch of Rohit Sharma, former Indian cricket team captain.',
+//     imageURL:'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260206025535773_4500.png',
+//     tags: ['Cricket', 'ICT']
+//   },
+//   {
+//     id: 3,
+//     categoryName: 'Photography',
+//     title: 'Where Time Meets the Sky',
+//     description: 'Ancient temple crown against drifting clouds.',
+//     imageURL: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260124204703411_7822.jpg',
+//     tags: ['temple']
+//   },
+//   {
+//     id: 4,
+//     categoryName: 'Photography',
+//     title: 'Faith in Motion',
+//     description: 'Devotees moving through a historic gateway.',
+//     imageURL: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260124204403067_7935.jpg',
+//     tags: ['Faith', 'historic']
+//   },
+//   {
+//     id: 5,
+//     categoryName: 'Photography',
+//     title: 'Faith in Motion',
+//     description: 'Devotees moving through a historic gateway.',
+//     imageURL: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260124204403067_7935.jpg',
+//     tags: ['Faith', 'historic']
+//   },
+//   {
+//     id: 6,
+//     categoryName: 'Photography',
+//     title: 'Faith in Motion',
+//     description: 'Devotees moving through a historic gateway.',
+//     imageURL: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260124204403067_7935.jpg',
+//     tags: ['Faith', 'historic']
+//   },
+// ]
 function CreativeWorks() {
   const [activeFilter, setActiveFilter] = useState('All')
   const [lightboxImg, setLightboxImg] = useState(null)
-
-  const filters = ['All', 'Sketches', 'Photography', 'Logo', 'PosterDesign']
-
+  const portfolioData = useLoaderData(); 
+  
+  const filters = [
+    "All",
+    ...new Set(portfolioData.map((item) => item.categoryName)),
+  ];
  
   const breakpointColumnsObj = {
     default: 3,
@@ -106,59 +110,55 @@ function CreativeWorks() {
               {filter}
             </li>
           ))}
-        </ul> 
-
-        <Masonry
+        </ul>  
+         <Masonry
             breakpointCols={breakpointColumnsObj}
             className="masonry-grid"
             data-aos="fade-up"
             columnClassName="masonry-grid_column"
-            >
-            {portfolioData.map(item => {
-                const isVisible =
-                activeFilter === "All" || item.category === activeFilter;
-
-                return (
+          >
+            {portfolioData
+              .filter(
+                item =>
+                  activeFilter === "All" ||
+                  item.categoryName === activeFilter
+              )
+              .map(item => (
                 <motion.div
-                    key={item.id}
-                    className="portfolio-item"
-                    animate={{
-                    opacity: isVisible ? 1 : 0,
-                    scale: isVisible ? 1 : 0.95
-                    }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    style={{
-                    display: isVisible ? "block" : "none"
-                    }}
+                  key={item.id}
+                  className="portfolio-item"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
                 >
-                    <div className="portfolio-card">
+                  <div className="portfolio-card">
                     <div className="portfolio-img">
-                        <img
-                        src={item.img}
+                      <img
+                        src={item.imageURL}
                         className="img-fluid"
                         alt={item.title}
-                        onClick={() => setLightboxImg(item.img)}
+                        onClick={() => setLightboxImg(item.imageURL)}
                         style={{ cursor: "zoom-in" }}
-                        />
+                      />
                     </div>
 
                     <div className="portfolio-info">
-                        <h4>{item.title}</h4>
-                        <p>{item.description}</p>
+                      <h4>{item.title}</h4>
+                      <p>{item.description}</p>
 
-                        {item.tags && (
+                      {item.tags && (
                         <div className="portfolio-tags">
-                            {item.tags.map((tag, i) => (
-                            <span key={i}>{tag}</span>
-                            ))}
+                          {item.tags.split(",").map((tag, i) => (
+                            <span key={i}>{tag.trim()}</span>
+                          ))}
                         </div>
-                        )}
+                      )}
                     </div>
-                    </div>
+                  </div>
                 </motion.div>
-                );
-            })}
-         </Masonry>
+              ))}
+          </Masonry>
+
 
 
       </div>
