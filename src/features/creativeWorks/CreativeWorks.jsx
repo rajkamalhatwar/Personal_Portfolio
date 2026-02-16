@@ -2,63 +2,13 @@ import React from 'react'
 import { useState } from 'react' 
 import Masonry from "react-masonry-css";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom"; 
  
-// const portfolioData = [
-//   {
-//     id: 1,
-//     categoryName: 'Sketches',
-//     title: 'The Chhatrapati Shivaji Maharaj Sketch',
-//     description: 'Chhatrapati Shivaji Maharaj known as Father of Indian Navy.',
-//     imageURL: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260120184304155_9837.jpg',
-//     tags: ['shivba', 'chhatrapati']
-//   },
-//   {
-//     id: 2,
-//     categoryName: 'Sketches',
-//     title: 'The Rohit Sharma Sketch',
-//     description: 'Sketch of Rohit Sharma, former Indian cricket team captain.',
-//     imageURL:'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260206025535773_4500.png',
-//     tags: ['Cricket', 'ICT']
-//   },
-//   {
-//     id: 3,
-//     categoryName: 'Photography',
-//     title: 'Where Time Meets the Sky',
-//     description: 'Ancient temple crown against drifting clouds.',
-//     imageURL: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260124204703411_7822.jpg',
-//     tags: ['temple']
-//   },
-//   {
-//     id: 4,
-//     categoryName: 'Photography',
-//     title: 'Faith in Motion',
-//     description: 'Devotees moving through a historic gateway.',
-//     imageURL: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260124204403067_7935.jpg',
-//     tags: ['Faith', 'historic']
-//   },
-//   {
-//     id: 5,
-//     categoryName: 'Photography',
-//     title: 'Faith in Motion',
-//     description: 'Devotees moving through a historic gateway.',
-//     imageURL: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260124204403067_7935.jpg',
-//     tags: ['Faith', 'historic']
-//   },
-//   {
-//     id: 6,
-//     categoryName: 'Photography',
-//     title: 'Faith in Motion',
-//     description: 'Devotees moving through a historic gateway.',
-//     imageURL: 'https://rajkamalblobstorage.blob.core.windows.net/portfolio/creative-works-images/20260124204403067_7935.jpg',
-//     tags: ['Faith', 'historic']
-//   },
-// ]
 function CreativeWorks() {
   const [activeFilter, setActiveFilter] = useState('All')
   const [lightboxImg, setLightboxImg] = useState(null)
   const portfolioData = useLoaderData(); 
-  
+
   const filters = [
     "All",
     ...new Set(portfolioData.map((item) => item.categoryName)),
