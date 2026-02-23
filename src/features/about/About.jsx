@@ -1,6 +1,7 @@
 import React from 'react'
 import MyPhoto from '../../assets/img/profile/MyPhoto.jpeg';
 import { useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function About() {
   const aboutData = useLoaderData();
@@ -27,9 +28,9 @@ function About() {
                 {aboutData.longAbout}
               </p> 
               <div className="cta-group">
-                <a href="#" className="btn-ghost">
+                <Link to='/Projects' className="btn-ghost">
                   View My Work <i className="bi bi-arrow-up-right"></i>
-                </a>
+                </Link>
                 {/* <!-- <a href="#" className="link-underline">
                   Download Resume <i className="bi bi-download"></i>
                 </a> --> */}

@@ -3,6 +3,7 @@ import MyPhoto from '../../assets/img/profile/MyPhoto.jpeg';
 import { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import { useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const typedRef = useRef(null);
@@ -44,8 +45,8 @@ function Home() {
                 </h2>
                 <p data-aos="fade-up" data-aos-delay="400">{homeData.heroLine}</p>
                 <div className="hero-actions" data-aos="fade-up" data-aos-delay="500">
-                    <a href="Projects.html" className="btn btn-primary">View My Work</a>
-                    <a href="contact.html" className="btn btn-outline">Get In Touch</a>
+                    <Link to="/Projects" className="btn btn-primary">View My Work</Link> 
+                    <Link to="/Contact" className="btn btn-outline">Get In Touch</Link>
                 </div>
                 <div className="social-links" data-aos="fade-up" data-aos-delay="600">
                     <a href={homeData.twitterLink} target="_blank" rel="noopener noreferrer"><i className="bi bi-twitter"></i></a>
