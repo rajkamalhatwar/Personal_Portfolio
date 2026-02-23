@@ -26,6 +26,13 @@ function MainLayout() {
       easing: "ease-in-out"
     });
   }, []);
+
+  useEffect(() => {
+    const loader = document.getElementById("preloader");
+    if (loader) {
+      loader.style.display = "none";
+    }
+  }, []);
   return (
     <> 
         <Header/>
